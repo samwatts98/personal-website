@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby',
+    title: 'Wam Satts',
   },
   plugins: [
     'gatsby-plugin-eslint',

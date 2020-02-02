@@ -5,9 +5,8 @@ import MainLayout from '../components/main-layout/main-layout'
 
 export default () => (
   <MainLayout>
-    <PageTitle titleText="Hello World!" />
     <ItemPanel
-      username="Sam Watts"
+      username="@samwatts98"
       avatar="https://avatars0.githubusercontent.com/u/36446362?s=460&v=4"
       excerpt="Hello! I'm Sam."
     />

@@ -1,32 +1,9 @@
 @import '../../styles/colours';
-
-$small-margin: 1rem;
-$max-content: 45rem;
-$min-content: 24rem;
+@import '../../styles/variables';
 
 .mainLayout {
   margin: 3rem auto;
   max-width: $max-content;
   min-width: $min-content;
   padding: 0 $small-margin;
-
-  .header {
-    .headerText {
-      display: inline;
-    }
-
-    .navBar {
-      list-style: none;
-      float: right;
-      margin-left: 0;
-
-      .navBarLink {
-        color: $colour3;
-        &:not(:last-child) {
-          margin-right: $small-margin;
-        }
-        display: inline-flex;
-      }
-    }
-  }
 }
