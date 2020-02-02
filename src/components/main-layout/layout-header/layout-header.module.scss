@@ -1,20 +1,23 @@
 @import '../../../styles/colours';
 @import '../../../styles/variables';
 
-.headerText {
-  display: inline;
-}
+.header {
+  margin-bottom: 2rem;
+  .headerText {
+    display: inline;
+  }
 
-.navBar {
-  list-style: none;
-  float: right;
-  margin-left: 0;
+  .navBar {
+    list-style: none;
+    float: right;
+    margin-left: 0;
 
-  .navBarLink {
-    display: inline-flex;
+    .navBarLink {
+      display: inline-flex;
 
-    &:not(:last-child) {
-      margin-right: $small-margin;
+      &:not(:last-child) {
+        margin-right: $medium-margin;
+      }
     }
   }
 }

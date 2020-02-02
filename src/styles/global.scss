@@ -1,7 +1,7 @@
 @import 'colours';
 
 body {
-  background-color: $colour4;
+  background-color: $backgroundColour;
   h1,
   h2,
   h3,
@@ -10,16 +10,16 @@ body {
   h6,
   p,
   a {
-    color: $colour2;
+    color: $textColour;
   }
   a {
     &:hover,
     &:focus {
-      color: $colour3;
+      color: $vibeyPurpleColour;
       text-decoration-line: underline;
     }
     &:active {
-      color: $colour5;
+      color: $vibeyBlueColour;
     }
   }
 }

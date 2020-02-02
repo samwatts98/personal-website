@@ -1,14 +1,30 @@
 import React from 'react'
 import styles from './item-panel.module.scss'
 
-const ItemPanel = props => (
-  <div className={styles.user}>
-    <img src={props.avatar} className={styles.avatar} alt="" />
-    <div className={styles.description}>
-      <h2 className={styles.username}>{props.username}</h2>
-      <p className={styles.excerpt}>{props.excerpt}</p>
+const Avatar = props => {
+  const [wobble, setWobble] = React.useState('false')
+  return (
+    <img
+      src={props.source}
+      className={styles.avatar}
+      onAnimationEnd={() => setWobble('false')}
+      onClick={() => setWobble('true')}
+      wobble={wobble}
+      alt="me!"
+    />
+  )
+}
+
+const ItemPanel = props => {
+  return (
+    <div className={styles.item}>
+      <Avatar source={props.avatar} />
+      <div className={styles.description}>
+        <h2 className={styles.name}>{props.username}</h2>
+        <p className={styles.excerpt}>{props.excerpt}</p>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default ItemPanel

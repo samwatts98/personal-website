@@ -1,3 +1,7 @@
+@import '../../styles/colours';
+
 .title {
   text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: $vibeyPurpleColour;
 }

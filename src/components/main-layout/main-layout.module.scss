@@ -2,8 +2,8 @@
 @import '../../styles/variables';
 
 .mainLayout {
-  margin: 3rem auto;
+  margin: 2rem auto;
   max-width: $max-content;
   min-width: $min-content;
-  padding: 0 $small-margin;
+  padding: 0 $medium-margin;
 }
