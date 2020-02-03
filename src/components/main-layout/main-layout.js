@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './main-layout.module.scss'
 import LayoutHeader from './layout-header/layout-header'
+import LayoutFooter from './layout-footer/layout-footer'
 
 export default ({ children }) => (
   <div className={styles.mainLayout}>
     <LayoutHeader />
-    <div id="content">{children}</div>
-    <div id="footer"></div>
+    <main>{children}</main>
+    <LayoutFooter />
   </div>
 )

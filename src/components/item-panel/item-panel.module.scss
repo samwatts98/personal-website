@@ -33,7 +33,7 @@
   height: 128px;
   border-radius: 1rem;
   margin: 0;
-  &[wobble='true'] {
+  &[wobble='1'] {
     @include animation(shakeAvatar 0.8s 1);
   }
 }

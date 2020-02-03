@@ -17,6 +17,8 @@ body {
     &:focus {
       color: $vibeyPurpleColour;
       text-decoration-line: underline;
+      border: none;
+      outline: none;
     }
     &:active {
       color: $vibeyBlueColour;

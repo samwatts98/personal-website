@@ -2,13 +2,13 @@ import React from 'react'
 import styles from './item-panel.module.scss'
 
 const Avatar = props => {
-  const [wobble, setWobble] = React.useState('false')
+  const [wobble, setWobble] = React.useState(0)
   return (
     <img
       src={props.source}
       className={styles.avatar}
-      onAnimationEnd={() => setWobble('false')}
-      onClick={() => setWobble('true')}
+      onAnimationEnd={() => setWobble(0)}
+      onClick={() => setWobble(1)}
       wobble={wobble}
       alt="me!"
     />

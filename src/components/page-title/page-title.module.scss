@@ -1,7 +1,9 @@
 @import '../../styles/colours';
-
+@import '../../styles/variables';
 .title {
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-decoration-color: $vibeyPurpleColour;
+  text-align: center;
+  margin-bottom: $medium-margin;
 }

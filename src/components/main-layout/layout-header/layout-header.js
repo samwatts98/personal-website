@@ -30,9 +30,9 @@ const WebsiteTitle = () => (
 const LayoutHeader = ({ data }) => (
   <header className={styles.header}>
     <WebsiteTitle />
-    <ul className={styles.navBar}>
+    <nav className={styles.navBar}>
       <HeadingLinkItem to="/contact/">Contact</HeadingLinkItem>
-    </ul>
+    </nav>
   </header>
 )
 export default LayoutHeader
