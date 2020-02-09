@@ -4,7 +4,8 @@ import uuid from 'uuid'
 
 import MessageFeed from './message-feed'
 import MessageEntry from './message-entry'
-import CurrentlyTyping from './message-typing-info'
+import CurrentlyTyping from './chat-typing-info'
+import ChatHeader from './chat-header'
 
 import styles from './socket-chat.module.scss'
 
@@ -15,17 +16,12 @@ const PAYLOAD_TYPES = {
   TYPING: 'TYPING',
 }
 
-const WS_URL =
-  'ws' +
-  (document.location.protocol === 'https:' ? 's' : '') +
-  '://' +
-  document.location.host.replace(':8000', ':8888') +
-  '/ws'
-
 class SocketChat extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      connected_users: [],
+      connected: false,
       typing: [],
       username: randomWords(2).join(' '),
       message: '',
@@ -34,7 +30,7 @@ class SocketChat extends React.Component {
   }
 
   componentDidMount() {
-    this.ws = new WebSocket(WS_URL)
+    this.ws = new WebSocket(process.env.SOCKCHAT_SOCKET_URL)
 
     this.ws.onmessage = event => {
       const received_payload = JSON.parse(event.data)
@@ -63,6 +59,7 @@ class SocketChat extends React.Component {
         type: PAYLOAD_TYPES.NEW_CONNECTION,
       }
       this.ws.send(JSON.stringify(payload))
+      this.setState({ connected: true })
     }
 
     this.ws.onclose = event => {
@@ -71,6 +68,7 @@ class SocketChat extends React.Component {
         type: PAYLOAD_TYPES.END_CONNECTION,
       }
       this.ws.send(JSON.stringify(payload))
+      this.setState({ connected: false })
     }
   }
 
@@ -96,22 +94,23 @@ class SocketChat extends React.Component {
   }
 
   handleSubmitMessage = event => {
-    const payload_message = {
-      username: this.state.username,
-      type: PAYLOAD_TYPES.NEW_MESSAGE,
-      value: this.state.message,
-      id: uuid.v4(),
-    }
-    this.ws.send(JSON.stringify(payload_message))
-    this.setState({ message: '' })
+    if (this.state.message) {
+      const payload_message = {
+        username: this.state.username,
+        type: PAYLOAD_TYPES.NEW_MESSAGE,
+        value: this.state.message,
+        id: uuid.v4(),
+      }
+      this.ws.send(JSON.stringify(payload_message))
+      this.setState({ message: '' })
 
-    const payload_typing = {
-      username: this.state.username,
-      type: PAYLOAD_TYPES.TYPING,
-      value: false,
+      const payload_typing = {
+        username: this.state.username,
+        type: PAYLOAD_TYPES.TYPING,
+        value: false,
+      }
+      this.ws.send(JSON.stringify(payload_typing))
     }
-    this.ws.send(JSON.stringify(payload_typing))
-
     event.preventDefault()
   }
 
@@ -132,11 +131,24 @@ class SocketChat extends React.Component {
   }
 
   handleJoinedChat = payload => {
-    alert(payload['username'] + ' connected!')
+    if (payload['username'] !== this.state.username) {
+      const connected_users = this.state.connected_users
+      this.setState({
+        connected_users: connected_users.concat(payload['username']),
+      })
+    }
   }
 
   handleLeftChat = payload => {
-    alert(payload['username'] + ' disconnected!')
+    if (payload['username'] !== this.state.username) {
+      const connected_users = this.state.connected_users
+      this.setState({
+        connected_users: connected_users.splice(
+          connected_users.indexOf(payload['username']),
+          1,
+        ),
+      })
+    }
   }
 
   handleReceiveTyping = payload => {
@@ -154,7 +166,11 @@ class SocketChat extends React.Component {
   render() {
     return (
       <div className={styles.socketChatContainer}>
-        <h4>Signed in as: {this.state.username}</h4>
+        <ChatHeader
+          username={this.state.username}
+          connected={this.state.connected}
+          users={this.state.connected_users}
+        />
         <MessageFeed messages={this.state.message_history} />
         <CurrentlyTyping typing={this.state.typing} />
         <MessageEntry

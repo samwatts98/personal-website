@@ -2,11 +2,35 @@
 @import '../../styles/variables';
 
 .socketChatContainer {
+  width: 100%;
+  margin: auto;
+
+  .chatSummary {
+    display: flex;
+    margin-bottom: $medium-margin;
+    h4 {
+      margin-top: 0;
+    }
+    .personalSummary {
+      flex-basis: 30%;
+      margin: 0 auto;
+    }
+    .lobbySummary {
+      flex-basis: 30%;
+      margin: 0 auto;
+
+      .listOfUsers {
+        max-height: 10vh;
+        overflow-y: auto;
+      }
+    }
+  }
+
   .messageFeed {
     border-color: $vibeyPurpleColour;
     border-style: solid;
-    border-width: 0.1rem;
-    border-radius: 0.25rem;
+    border-width: $border-thin;
+    border-radius: $border-radius;
     background: white;
 
     max-height: 40vh;
@@ -14,8 +38,9 @@
     overflow-y: auto;
 
     .messageSlot {
-      border-bottom-width: 1px;
+      border-bottom-width: $border-thin;
       border-bottom-style: solid;
+      border-bottom-color: $textColour;
       & > p {
         margin: $small-margin;
       }
@@ -25,20 +50,24 @@
   .messageEntry {
     margin: $small-margin 0;
     display: flex;
-
-    input {
+    textarea {
       border-color: black;
-      border-width: 1px;
-      border-radius: 0.25rem;
-    }
-    input[type='text'] {
-      flex-grow: 5;
+      border-width: $border-thin;
+      border-radius: $border-radius;
+      flex-basis: 80%;
+      max-height: 20vh;
+      resize: none;
+      overflow-y: auto;
     }
     input[type='submit'] {
-      flex-grow: 1;
+      border-color: black;
+      border-width: $border-thin;
+      border-radius: $border-radius;
+      flex-basis: 20%;
       background: $vibeyBlueColour;
-
       margin-left: $small-margin;
+      height: 5vh;
+      min-width: 3rem;
     }
   }
 }

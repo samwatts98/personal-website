@@ -1,4 +1,5 @@
 @import 'colours';
+@import 'variables';
 
 body {
   background-color: $backgroundColour;
@@ -23,5 +24,15 @@ body {
     &:active {
       color: $vibeyBlueColour;
     }
+  }
+
+  ::-webkit-scrollbar {
+    width: $small-margin;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $vibeyPurpleColour;
+    border-radius: $border-radius;
   }
 }

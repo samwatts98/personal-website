@@ -21,6 +21,7 @@
     "node-sass": "4.13.1",
     "random-words": "1.1.0",
     "react": "^16.12.0",
+    "react-autosize-textarea": "^7.0.0",
     "react-dom": "^16.12.0",
     "react-typography": "0.16.19",
     "sockette": "2.0.6",

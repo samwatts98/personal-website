@@ -6,7 +6,6 @@ import SocketChat from '../components/socket-chat/socket-chat'
 export default () => {
   return (
     <MainLayout>
-      <PageTitle />
       <SocketChat />
     </MainLayout>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import styles from './socket-chat.module.scss'
 
 const MessageSlot = props => (
@@ -9,17 +9,25 @@ const MessageSlot = props => (
   </div>
 )
 
-const MessageFeed = props => (
-  <div className={styles.messageFeed}>
-    {props.messages.map((item, idx) => (
-      <MessageSlot
-        username={item.username}
-        message={item.message}
-        key={item.id}
-      />
-    ))}
-  </div>
-)
+const MessageFeed = ({ messages }) => {
+  const messageFeedEndRef = useRef(null)
+  const jumpToRecentMessage = () => {
+    messageFeedEndRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
+  useEffect(jumpToRecentMessage, [messages])
+  return (
+    <div id="message-feed" className={styles.messageFeed}>
+      {messages.map((item, idx) => (
+        <MessageSlot
+          username={item.username}
+          message={item.message}
+          key={item.id}
+        />
+      ))}
+      <div ref={messageFeedEndRef} />
+    </div>
+  )
+}
 
 export default MessageFeed
 export { MessageSlot }
