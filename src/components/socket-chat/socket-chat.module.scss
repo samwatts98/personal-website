@@ -1,0 +1,44 @@
+@import '../../styles/colours';
+@import '../../styles/variables';
+
+.socketChatContainer {
+  .messageFeed {
+    border-color: $vibeyPurpleColour;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 0.25rem;
+    background: white;
+
+    max-height: 40vh;
+    min-height: 5vh;
+    overflow-y: auto;
+
+    .messageSlot {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      & > p {
+        margin: $small-margin;
+      }
+    }
+  }
+
+  .messageEntry {
+    margin: $small-margin 0;
+    display: flex;
+
+    input {
+      border-color: black;
+      border-width: 1px;
+      border-radius: 0.25rem;
+    }
+    input[type='text'] {
+      flex-grow: 5;
+    }
+    input[type='submit'] {
+      flex-grow: 1;
+      background: $vibeyBlueColour;
+
+      margin-left: $small-margin;
+    }
+  }
+}

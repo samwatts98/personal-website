@@ -3,3 +3,5 @@
 node_modules
 public
 .prettierignore
+server/__pycache__/
+server/.idea

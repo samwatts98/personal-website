@@ -32,6 +32,7 @@ const LayoutHeader = ({ data }) => (
     <WebsiteTitle />
     <nav className={styles.navBar}>
       <HeadingLinkItem to="/contact/">Contact</HeadingLinkItem>
+      <HeadingLinkItem to="/sockets/">SockChat</HeadingLinkItem>
     </nav>
   </header>
 )
